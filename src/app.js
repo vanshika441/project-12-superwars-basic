@@ -26,51 +26,44 @@ const initPlayers = (players) => {
     let detailedPlayers = [];
     // Create players using for loop
     // Type your code here
- for(let index=0;index<players.length;index++){
-        var object={}
-        object.name=players[index]
-        object.strength=getRandomStrength()
-        object.image= "images/super-"+(index+1)+".png"
-        object.type=generateType()
-        detailedPlayers.push(object)
+    for(var i=0;i<players.length;i++)
+    {
+        detailedPlayers[i]={
+            name:players[i],
+            strength:getRandomStrength(),
+            image:"images/super-"+(i+1)+".png"
+        };
+        if(i % 2 == 0)
+        {
+            detailedPlayers[i].type="hero";
+        }
+        else{
+            detailedPlayers[i].type="villain";
+        }
     }
-
-
     return detailedPlayers;
 }
-const generateType=()=>{
-    let random=Math.round(Math.random())
-    return random===0?"hero":"villain"
-}
- 
 
 // getting random strength
 const getRandomStrength = () => {
     // Return a random integer (0,100]
     // Note: You can use Math.random() and Math.ceil()
-}
-const getRandomStrength = () => {
-    // Return a random integer (0,100]
-    // Note: You can use Math.random() and Math.ceil()
-    return Math.round(Math.random()*100)+1
+    let s = Math.ceil(Math.random() * (100-1) + 1);
+    return s;
 }
 
 const buildPlayers = (players, type) => {
     let fragment = '';
 
-
     // Loop through players and accumulate HTML template
     // depending of type of player(hero|villain)
     // Type your code here
- for(let index=0;index<players.length;index++){
-        if(players[index].type===type){
-            let temp=`<div class="player">
-            <img src="${players[index].image}" alt="">
-            <div class="name">${players[index].name}</div>
-            <div class="strength">${players[index].strength}</div>
-         </div>`
-         fragment+=temp
-        }
+    for(var i=0;i<players.length;i++)
+    {
+        if(players[i].type == type)
+        {
+            fragment+=`<div class="player"> <img src="${players[i].image}" alt=""> <div class="name">${players[i].name}</div> <div class="strength">${players[i].strength}</div> </div>`;
+        } 
     }
     return fragment;
 }
