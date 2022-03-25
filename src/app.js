@@ -20,7 +20,6 @@ const PLAYERS = [
     "Vader",
     "Slingo"
 ];
-
 // initialize players with image and strength
 const initPlayers = (players) => {
     let detailedPlayers = [];
